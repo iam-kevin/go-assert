@@ -50,6 +50,8 @@ func Capture(deferrer func(err error)) {
 	if e := recover(); e != nil {
 		if aerr, ok := e.(AssersionError); ok {
 			deferrer(aerr.Unwrap())
+		} else {
+			panic(e)
 		}
 	}
 }
