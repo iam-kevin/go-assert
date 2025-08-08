@@ -98,15 +98,15 @@ func mergeOptions(opts []AssertOption) *assertOptions {
 
 // Is panics when the condition resolves to false.
 // Optional AssertOption parameters can be provided to customize the error message.
-func Is(condition bool, options ...AssertOption) {
+func Is(condition bool, messageWithArgs ...AssertOption) {
 	if !condition {
-		opts := mergeOptions(options)
+		opts := mergeOptions(messageWithArgs)
 		panic(opts.reason)
 	}
 }
 
 // IsNil panics when the input object is not nil.
 // Optional AssertOption parameters can be provided to customize the error message.
-func IsNil(obj interface{}, options ...AssertOption) {
-	Is(obj == nil, options...)
+func IsNil(obj interface{}, messageWithArgs ...AssertOption) {
+	Is(obj == nil, messageWithArgs...)
 }
