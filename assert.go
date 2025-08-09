@@ -96,6 +96,11 @@ func mergeOptions(opts []AssertOption) *assertOptions {
 	return o
 }
 
+func Throw(messageWithArgs ...AssertOption) {
+	opts := mergeOptions(messageWithArgs)
+	panic(opts.reason)
+}
+
 // Is panics when the condition resolves to false.
 // Optional AssertOption parameters can be provided to customize the error message.
 func Is(condition bool, messageWithArgs ...AssertOption) {
