@@ -78,9 +78,14 @@ func normError(e interface{}) AssersionError {
 // mergeOptions processes and combines assertion options into a single configuration.
 // It handles string options (converted to error messages) and function options
 // that modify the assertOptions struct.
-func mergeOptions(opts []AssertOption) *assertOptions {
+func mergeOptions(messageWithArgs []AssertOption) *assertOptions {
 	o := new(assertOptions)
-	for _, w := range opts {
+	if len(messageWithArgs) == 0 {
+		o.reason = normError("unknown error")
+		return o
+	}
+
+	for _, w := range messageWithArgs {
 		switch l := w.(type) {
 		case func(opts *assertOptions):
 			{
