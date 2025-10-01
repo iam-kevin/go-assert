@@ -60,6 +60,10 @@ func Capture(deferrer func(err error)) {
 // It handles string messages, existing errors, and unknown types.
 func normError(e interface{}) AssersionError {
 	switch v := e.(type) {
+	case AssersionError:
+		{
+			return v
+		}
 	case string:
 		{
 			return AssersionError{errors.New(v)}
@@ -91,13 +95,13 @@ func mergeOptions(messageWithArgs []AssertOption) *assertOptions {
 			{
 				l(o)
 			}
-		case string:
+		case AssersionError, error, string:
 			{
 				o.reason = normError(l)
 			}
 		}
-
 	}
+
 	return o
 }
 
