@@ -85,7 +85,7 @@ func normError(e interface{}) AssersionError {
 func mergeOptions(messageWithArgs []AssertOption) *assertOptions {
 	o := new(assertOptions)
 	if len(messageWithArgs) == 0 {
-		o.reason = normError("unknown error")
+		o.reason = normError("unlabel failed assersion")
 		return o
 	}
 
