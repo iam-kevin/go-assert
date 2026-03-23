@@ -11,6 +11,7 @@ import (
 // assertOptions holds configuration options for assertion functions.
 type assertOptions struct {
 	reason AssersionError
+	args   []any
 }
 
 // AssertOption is an interface for assertion configuration options.
