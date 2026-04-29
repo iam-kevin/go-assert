@@ -43,6 +43,11 @@ func ErrorIsNil(err error) {
 	}
 }
 
+func Must[T interface{}](v T, err error) T {
+	ErrorIsNil(err)
+	return v
+}
+
 // Capture recovers from assertion panics and converts them back to errors.
 // It should be used with defer to handle assertion failures gracefully.
 // The deferrer function is called with the underlying error if an AssersionError
